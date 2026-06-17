@@ -111,7 +111,8 @@ Please respect the upstream licenses of these corpora.
 
 ## Citation
 
-If you use these models or the framework, please cite both papers:
+A dedicated paper describing the methods behind these specific models is **in preparation** — please check back
+and cite it when available. In the meantime, if you use these models or the framework, please cite:
 
 ```bibtex
 
@@ -143,6 +144,15 @@ If you use these models or the framework, please cite both papers:
   year={2024}
 }
 ```
+
+## About & support
+
+These models are built by [**mederrata**](https://mederrata.org), a **non-profit** developing interpretable,
+efficient AI in the open. As a non-profit, we rely on **donations, grants, and sponsorships** to keep this work
+going and freely available. **If you find this useful, please consider [donating or
+sponsoring](https://mederrata.org)** — every contribution helps us maintain and extend these models (more
+capabilities, more languages, and the forthcoming methods paper). Donate, partner, or learn more at
+[mederrata.org](https://mederrata.org).
 
 ## License
 

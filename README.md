@@ -112,6 +112,7 @@ Please respect the upstream licenses of these corpora.
 If you use these models or the framework, please cite both papers:
 
 ```bibtex
+
 @misc{chang2026renormalizationgroupinspiredlatticebasedframework,
       title={A renormalization-group inspired lattice-based framework for piecewise generalized linear models}, 
       author={Joshua C. Chang},

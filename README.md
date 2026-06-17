@@ -57,15 +57,17 @@ native PTB accuracy is ~97%.)
 
 **Sentence boundary detection** (sentence-level exact-match / boundary-F1):
 
-| model | GUM (formal) | EWT (informal web) | model size |
-|---|---|---|---|
-| **interpretable-corenlp** | **0.848 / 0.926** | **0.634 / 0.818** | **0.3 MB** |
-| Stanford CoreNLP `ssplit` | 0.832 / 0.915 | 0.595 / 0.793 | 488 MB |
-| spaCy `sentencizer` | 0.835 / 0.911 | 0.621 / 0.808 | 15 MB |
-| NLTK `punkt` | 0.803 / 0.892 | 0.574 / 0.777 | few MB |
+| model | GUM (formal) | EWT (informal web) | speed (chars/s) | model size |
+|---|---|---|---|---|
+| **interpretable-corenlp** | **0.848 / 0.926** | **0.634 / 0.818** | 116k | **0.3 MB** |
+| Stanford CoreNLP `ssplit` | 0.832 / 0.915 | 0.595 / 0.793 | 132k | 488 MB |
+| spaCy `sentencizer` | 0.835 / 0.911 | 0.621 / 0.808 | 101k | 15 MB |
+| NLTK `punkt` | 0.803 / 0.892 | 0.574 / 0.777 | 14.6M | few MB |
 
-A **0.3 MB glass-box segmenter beats Stanford CoreNLP and spaCy.** (Accuracy tracks how much punctuation the
-text actually has; on the informal web half it is bounded by genuinely unpunctuated boundaries.)
+A **0.3 MB glass-box segmenter beats Stanford CoreNLP and spaCy** at comparable speed. Our segmenter runs a
+POS pass (the cost), so it is in the same speed class as CoreNLP/spaCy and ~1500× smaller; NLTK `punkt` is far
+faster because it is pure rules with no tagging, but it is the least accurate. (Accuracy tracks how much
+punctuation the text actually has; on the informal web half it is bounded by genuinely unpunctuated boundaries.)
 
 ## Install & use
 
@@ -109,7 +111,8 @@ Please respect the upstream licenses of these corpora.
 
 ## Citation
 
-If you use these models or the framework, please cite both papers:
+A dedicated paper describing the methods behind these specific models is **in preparation** — please check back
+and cite it when available. In the meantime, if you use these models or the framework, please cite:
 
 ```bibtex
 
@@ -141,6 +144,15 @@ If you use these models or the framework, please cite both papers:
   year={2024}
 }
 ```
+
+## About & support
+
+These models are built by [**mederrata**](https://mederrata.org), a **non-profit** developing interpretable,
+efficient AI in the open. As a non-profit, we rely on **donations, grants, and sponsorships** to keep this work
+going and freely available. **If you find this useful, please consider [donating or
+sponsoring](https://mederrata.org)** — every contribution helps us maintain and extend these models (more
+capabilities, more languages, and the forthcoming methods paper). Donate, partner, or learn more at
+[mederrata.org](https://mederrata.org).
 
 ## License
 

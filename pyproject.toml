@@ -1,0 +1,18 @@
+[project]
+name = "interpretable-corenlp"
+version = "0.1.0"
+description = "Intrinsically interpretable English NLP: glass-box POS tagger, sentence boundary detector, and the static embedding they share"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+dependencies = ["numpy", "scipy", "nltk"]
+
+[project.optional-dependencies]
+bench = ["spacy"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["interpretable_corenlp*"]

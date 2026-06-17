@@ -1,12 +1,11 @@
-# interpretable-corenlp
+# Intrinsically interpretable core NLP models
 
-**Intrinsically interpretable English NLP — a part-of-speech tagger, a sentence boundary detector, and the
-static word embedding they share.** Each model is a *glass box*: every prediction is an **exact sum of named
-feature contributions** you can read off (`explain()`), not a post-hoc approximation. No attention, no depth —
-a shallow kernel machine over a frozen, inspectable embedding — yet it **matches or beats Stanford CoreNLP,
-spaCy, and a fine-tuned RoBERTa** at a fraction of the size and far higher speed.
+**These models share a static word embedding that we are sharing using git lfs (for now, until it becomes cost prohibitive). 
+Each model is an intriniscally interpretable *glass box*: every prediction is an **exact sum of named
+feature contributions** you can read off (`explain()`). To reiterate, the explainer is **exact** and is NOT not a post-hoc approximation. 
+The accuracy of these models is competitive with transformers-based counterparts while offering orders of magnitude efficiency gains.
 
-> **English only.** All models are trained and evaluated on English.
+> **English only.** All models are trained and evaluated on English. We'll work on other languages eventually, with your support.
 
 ## Why "interpretable"
 
@@ -89,16 +88,12 @@ See `examples/run_pos.py`, `examples/run_sentence.py`, `examples/interpretabilit
 
 ## How it works (the framework)
 
-A gradient-trained network is approximately a kernel machine; attention and depth are *an implementation* of a
-kernel, not a requirement. These models build the kernel machine on purpose: a shallow, non-deep-learning
-factorization of the PMI kernel (the embedding `W`) read by a **functional-ANOVA lattice** — a generalized
-additive model whose parameters are decomposed over a lattice of named features, with
-generalization-preserving (horseshoe-sparse) regularization. The result is piecewise-linear, modular, and
-fully auditable. Details and theory are in the papers below.
+Neural networks are spline regression models. All regression models are kernel machines. The [Bayesianquilts framework](https://github.com/mederrata/bayesianquilts) provides a set of techniques to adapt hierarchical mixed effects regression to the same task with the explicit constraint of being interpretable. This framework is anti- deep learning and in particular anti- transformers.
+As a bonus, models fitted with this technique have very quick forward computation (so-called inference - side note, inference means learning something from data, why computing a forward pass of a neural network is called inference is bewildering).
 
 ## Data sources
 
-All English. Models trained on:
+All models are English-only for now. Since all regression models are kernel machines, knowing the data that went into learning them can inform on any blind spots. These datasets are:
 
 - **Embedding `W`** — [C4](https://www.tensorflow.org/datasets/catalog/c4) (Colossal Clean Crawled Corpus;
   ODC-BY), as a quilted/sparse PPMI factorization.
@@ -117,15 +112,32 @@ Please respect the upstream licenses of these corpora.
 If you use these models or the framework, please cite both papers:
 
 ```bibtex
-@article{interpretable_embedding,
-  title = {An interpretable static word embedding via sparse quilted matrix factorization},
-  note  = {arXiv:2605.05493},
-  url   = {https://arxiv.org/abs/2605.05493}
+@misc{chang2026renormalizationgroupinspiredlatticebasedframework,
+      title={A renormalization-group inspired lattice-based framework for piecewise generalized linear models}, 
+      author={Joshua C. Chang},
+      year={2026},
+      eprint={2605.05493},
+      archivePrefix={arXiv},
+      primaryClass={stat.ME},
+      url={https://arxiv.org/abs/2605.05493}, 
 }
-@inproceedings{interpretable_lattice,
-  title = {Glass-box lattice models},
-  note  = {OpenReview},
-  url   = {https://openreview.net/forum?id=D_KeYoqCYC}
+
+@article{chang2024interpretable,
+  title={Interpretable (not just posthoc-explainable) medical claims modeling for discharge placement to reduce preventable all-cause readmissions or death},
+  author={Chang, Ted L and Xia, Hongjing and Mahajan, Sonya and Mahajan, Rohit and Maisog, Jose and others},
+  journal={PLOS ONE},
+  volume={19},
+  number={5},
+  pages={e0302871},
+  year={2024},
+  publisher={Public Library of Science}
+}
+
+@article{chang2024gradient,
+  title={Gradient-flow adaptive importance sampling for Bayesian leave one out cross-validation with application to sigmoidal classification models},
+  author={Chang, Joshua C and Li, Xu and Xu, Shuang and Yao, Howard R and Porcino, John and Chow, Carson C},
+  journal={arXiv preprint arXiv:2402.08151},
+  year={2024}
 }
 ```
 

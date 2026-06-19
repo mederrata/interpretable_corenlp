@@ -4,17 +4,17 @@
 
 **These models share a static word embedding that we are sharing using git lfs (for now, until it becomes cost prohibitive). 
 Each model is an intriniscally interpretable *glass box*: every prediction is an **exact sum of named
-feature contributions** you can read off (`explain()`). To reiterate, the explainer is **exact** and is NOT not a post-hoc approximation. 
+feature contributions** you can read off (`explain()`). To reiterate, the explainer is **exact** and is NOT a post-hoc approximation. 
 The accuracy of these models is competitive with transformers-based counterparts while offering orders of magnitude efficiency gains.
 
 > **English only.** All models are trained and evaluated on English. We'll work on other languages eventually, with your support.
 
 ## Why "interpretable"
 
-These are not black boxes probed after the fact. The architecture *is* the explanation:
+These are NOT black boxes. The architecture *is* the explanation:
 
 - The **embedding** `W` is a sparse PPMI matrix factorization with **named dimensions** — each coordinate is a
-  coherent, nameable factor (a topic / part-of-speech / sense signal), not a rotation-arbitrary latent.
+  coherent, nameable factor (a topic / part-of-speech / sense signal), NOT a rotation-arbitrary latent.
 - The **POS tagger** and **sentence detector** are *functional-ANOVA lattices* (a generalized additive model
   over **named** features: suffix-class × shape × closed-class × position × WordNet-POS-set, projecting the
   embedding), plus a named tag→tag transition. The emission for any tag is literally
@@ -149,8 +149,8 @@ and cite it when available. In the meantime, if you use these models or the fram
 
 ## About & support
 
-These models are built by [**mederrata**](https://mederrata.org), a **non-profit** developing interpretable,
-efficient AI in the open. As a non-profit, we rely on **donations, grants, and sponsorships** to keep this work
+These models are built by [**Mederrat Research**](https://mederrata.org), a **non-profit** developing interpretable,
+efficient intelligence tools that anybody can run. As a non-profit, we rely on **donations, grants, and sponsorships** to keep this work
 going and freely available. **If you find this useful, please consider [donating or
 sponsoring](https://mederrata.org)** — every contribution helps us maintain and extend these models (more
 capabilities, more languages, and the forthcoming methods paper). Donate, partner, or learn more at

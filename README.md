@@ -1,5 +1,7 @@
 # Intrinsically interpretable core NLP models
 
+[![Donate via Zeffy](https://img.shields.io/badge/Donate-Support%20Transparency%20in%20AI-ff5a5f?style=for-the-badge)](https://www.zeffy.com/en-US/donation-form/donate-to-support-transparency-in-ai)
+
 **These models share a static word embedding that we are sharing using git lfs (for now, until it becomes cost prohibitive). 
 Each model is an intriniscally interpretable *glass box*: every prediction is an **exact sum of named
 feature contributions** you can read off (`explain()`). To reiterate, the explainer is **exact** and is NOT not a post-hoc approximation. 
